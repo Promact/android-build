@@ -70,3 +70,4 @@ RUN ${ANDROID_SDK_MANAGER} ${ANDROID_NDK_COMPONENTS}
 
 ENV ANDROID_NDK_HOME ${ANDROID_SDK}/ndk-bundle
 ENV PATH ${ANDROID_NDK_HOME}:$PATH
+RUN apt-get install python-pip -y && pip install awscli
