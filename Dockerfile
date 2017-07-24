@@ -71,3 +71,8 @@ RUN ${ANDROID_SDK_MANAGER} ${ANDROID_NDK_COMPONENTS}
 ENV ANDROID_NDK_HOME ${ANDROID_SDK}/ndk-bundle
 ENV PATH ${ANDROID_NDK_HOME}:$PATH
 RUN apt-get update && apt-get install python-pip -y && pip install awscli
+# Download the repo
+RUN git clone https://github.com/facebook/redex.git /opt/redex && cd /opt/redex && git submodule update --init
+
+# Build Redex
+RUN cd /opt/redex && autoreconf -ivf && ./configure && make && make install
