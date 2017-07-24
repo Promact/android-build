@@ -71,6 +71,36 @@ RUN ${ANDROID_SDK_MANAGER} ${ANDROID_NDK_COMPONENTS}
 ENV ANDROID_NDK_HOME ${ANDROID_SDK}/ndk-bundle
 ENV PATH ${ANDROID_NDK_HOME}:$PATH
 RUN apt-get update && apt-get install python-pip -y && pip install awscli
+RUN apt-get update && apt-get -y install \
+    openjdk-7-jre \
+    wget \
+    git \
+    g++ \
+    automake \
+    autoconf \
+    autoconf-archive \
+    libtool \
+    libboost-all-dev \
+    libevent-dev \
+    libdouble-conversion-dev \
+    libgoogle-glog-dev \
+    libgflags-dev \
+    liblz4-dev \
+    liblzma-dev \
+    libsnappy-dev \
+    libjsoncpp-dev \
+    make \
+    zlib1g-dev \
+    binutils-dev \
+    libjemalloc-dev \
+    libssl-dev \
+    libiberty-dev \
+    libc6:i386 \
+    libncurses5:i386 \
+    libstdc++6:i386 \
+    libgcc1:i386 \
+    zlib1g:i386 \
+    lib32z1
 # Download the repo
 RUN git clone https://github.com/facebook/redex.git /opt/redex && cd /opt/redex && git submodule update --init
 
