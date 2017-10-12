@@ -45,7 +45,8 @@ ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:$ANDROID_HOME/platform-
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
                        "build-tools;26.0.2" \                       
-                       "platforms;android-26" 
+                       "platforms;android-25" \
+		       "platforms;android-26" 
 
 ENV GOOGLE_COMPONENTS "extras;android;m2repository" \
                        "extras;google;m2repository" \
