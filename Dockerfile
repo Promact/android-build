@@ -40,7 +40,7 @@ RUN curl -sSL "${ANDROID_SDK_URL}" -o ${ANDROID_SDK_VERSION} \
   && rm -rf ${ANDROID_SDK_VERSION}
   
 ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-RUN echo y | sdkmanager --update && echo y | sdkmanager --licenses
+RUN (while sleep 3; do echo "y"; done) | sdkmanager --update && (while sleep 3; do echo "y"; done) | sdkmanager --licenses
 # Install Android SDK Components
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
