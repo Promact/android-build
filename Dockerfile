@@ -33,14 +33,14 @@ ENV ANDROID_HOME ${SDK_HOME}/android-sdk-linux
 ENV ANDROID_SDK ${SDK_HOME}/android-sdk-linux
 ENV ANDROID_SDK_MANAGER ${SDK_HOME}/android-sdk-linux/tools/bin/sdkmanager
 
-ENV ANDROID_SDK_VERSION r25.2.3
-ENV ANDROID_SDK_URL https://dl.google.com/android/repository/tools_${ANDROID_SDK_VERSION}-linux.zip
-RUN curl -sSL "${ANDROID_SDK_URL}" -o tools_${ANDROID_SDK_VERSION}-linux.zip \
-    && unzip tools_${ANDROID_SDK_VERSION}-linux.zip -d ${ANDROID_HOME} \
-  && rm -rf tools_${ANDROID_SDK_VERSION}-linux.zip
+ENV ANDROID_SDK_VERSION sdk-tools-linux-3859397.zip
+ENV ANDROID_SDK_URL https://dl.google.com/android/repository/${ANDROID_SDK_VERSION}
+RUN curl -sSL "${ANDROID_SDK_URL}" -o ${ANDROID_SDK_VERSION} \
+    && unzip ${ANDROID_SDK_VERSION} -d ${ANDROID_HOME} \
+  && rm -rf ${ANDROID_SDK_VERSION}
   
 ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-
+RUN sdkmanager --update && yes | sdkmanager --licenses
 # Install Android SDK Components
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
