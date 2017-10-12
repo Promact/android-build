@@ -44,9 +44,9 @@ RUN (while sleep 3; do echo "y"; done) | sdkmanager --update && (while sleep 3; 
 # Install Android SDK Components
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
-                       "build-tools;26.0.2" \                       
-                       "platforms;android-25" \
-		       "platforms;android-26" 
+                       "build-tools;26.0.2" \
+		       "build-tools;25.0.3" \
+                       "platforms;android-25"		       
 
 ENV GOOGLE_COMPONENTS "extras;android;m2repository" \
                        "extras;google;m2repository" \
