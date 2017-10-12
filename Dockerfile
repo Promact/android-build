@@ -58,7 +58,7 @@ ENV CONSTRAINT_LAYOUT "extras;m2repository;com;android;support;constraint;constr
 RUN mkdir -p ${ANDROID_HOME}/licenses/ && \
     echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license && \
     echo "d56f5187479451eabf01fb78af6dfcb131a6481e" > ${ANDROID_HOME}/licenses/android-sdk-preview-license && \
-    ${ANDROID_SDK_MANAGER}  ${ANDROID_COMPONENTS} \
+    (while sleep 3; do echo "y"; done) | ${ANDROID_SDK_MANAGER}  ${ANDROID_COMPONENTS} \
                             ${GOOGLE_COMPONENTS} \
                             ${CONSTRAINT_LAYOUT}  
 
@@ -66,7 +66,7 @@ ENV ANDROID_NDK_COMPONENTS "ndk-bundle" \
                        "lldb;2.3" \
                        "cmake;3.6.4111459"
                        
-RUN ${ANDROID_SDK_MANAGER} ${ANDROID_NDK_COMPONENTS}  
+RUN (while sleep 3; do echo "y"; done) | ${ANDROID_SDK_MANAGER} ${ANDROID_NDK_COMPONENTS}  
 
 ENV ANDROID_NDK_HOME ${ANDROID_SDK}/ndk-bundle
 ENV PATH ${ANDROID_NDK_HOME}:$PATH
