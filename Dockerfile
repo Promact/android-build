@@ -44,9 +44,8 @@ ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:$ANDROID_HOME/platform-
 # Install Android SDK Components
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
-                       "build-tools;25.0.3" \                       
-                       "platforms;android-24" \
-                       "platforms;android-25" 
+                       "build-tools;26.0.2" \                       
+                       "platforms;android-26" 
 
 ENV GOOGLE_COMPONENTS "extras;android;m2repository" \
                        "extras;google;m2repository" \
