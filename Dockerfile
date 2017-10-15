@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN dpkg --add-architecture i386 && \
     apt-get -qq update && \
     apt-get -qqy install --no-install-recommends \
-       libc6:i386 libstdc++6:i386 zlib1g:i386 libncurses5:i386 tar git && \
+       libc6:i386 libstdc++6:i386 zlib1g:i386 libncurses5:i386 tar git curl && \
     apt-get clean && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
@@ -41,7 +41,8 @@ ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
                        "build-tools;26.0.2" \
 		               "build-tools;25.0.3" \
-                       "platforms;android-25"		       
+                       "platforms;android-25" \
+                       "platforms;android-24"
 
 ENV GOOGLE_COMPONENTS "extras;android;m2repository" \
                        "extras;google;m2repository" \
@@ -69,9 +70,9 @@ RUN (while sleep 3; do echo "y"; done) | ${ANDROID_SDK_MANAGER} ${ANDROID_NDK_CO
 ENV ANDROID_NDK_HOME ${ANDROID_SDK}/ndk-bundle
 ENV PATH ${ANDROID_NDK_HOME}:$PATH
 RUN apt-get -qq update && \
-    apt-get -qqy install python-pip --no-install-recommends && \
+    apt-get -qqy install python-pip python-setuptools --no-install-recommends && \
     pip install awscli && \
-    apt-get remove --purge -y python-pip && \
+    apt-get remove --purge -y python-pip python-setuptools && \
     apt-get clean && \
-    apt-get autoremove && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
