@@ -3,10 +3,13 @@ FROM openjdk:8
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install dependencies
-RUN apt-get -qq update && \
+RUN dpkg --add-architecture i386 && \
+    apt-get -qq update && \
     apt-get -qqy install --no-install-recommends \
-       unzip \
-     && rm -rf /var/lib/apt/lists/*
+       unzip libc6:i386 libstdc++6:i386 zlib1g:i386 libncurses5:i386 tar git && \
+    apt-get clean && \
+    apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
 
 # Everything will be installed in the directory but jdk.
 ENV SDK_HOME /usr/local
@@ -19,14 +22,6 @@ RUN curl -sSL "${GRADLE_SDK_URL}" -o gradle-${GRADLE_VERSION}-bin.zip  \
 	&& rm -rf gradle-${GRADLE_VERSION}-bin.zip
 ENV GRADLE_HOME ${SDK_HOME}/gradle-${GRADLE_VERSION}
 ENV PATH ${GRADLE_HOME}/bin:$PATH
-
-# Install dependencies
-RUN dpkg --add-architecture i386 && \
-    apt-get -qq update && \
-    apt-get -qqy install libc6:i386 libstdc++6:i386 zlib1g:i386 libncurses5:i386 unzip tar git --no-install-recommends && \
-    apt-get clean && \
-    apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/*
 
 # Download and unzip Android SDK
 ENV ANDROID_HOME ${SDK_HOME}/android-sdk-linux
@@ -45,7 +40,7 @@ RUN (while sleep 3; do echo "y"; done) | sdkmanager --update && (while sleep 3; 
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
                        "build-tools;26.0.2" \
-		       "build-tools;25.0.3" \
+		               "build-tools;25.0.3" \
                        "platforms;android-25"		       
 
 ENV GOOGLE_COMPONENTS "extras;android;m2repository" \
@@ -70,4 +65,10 @@ RUN (while sleep 3; do echo "y"; done) | ${ANDROID_SDK_MANAGER} ${ANDROID_NDK_CO
 
 ENV ANDROID_NDK_HOME ${ANDROID_SDK}/ndk-bundle
 ENV PATH ${ANDROID_NDK_HOME}:$PATH
-RUN apt-get update && apt-get install python-pip -y && pip install awscli
+RUN apt-get -qq update && \
+    apt-get -qqy install python-pip --no-install-recommends && \
+    pip install awscli && \
+    apt-get remove --purge -y python-pip && \
+    apt-get clean && \
+    apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
