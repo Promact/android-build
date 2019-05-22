@@ -3,7 +3,6 @@
 
 ### 22nd May 2019
 - Gradle 5.4.1
-- Android build-tool 28.0.0
 - Android platform-tool 28
 - Android NDK r15b
 - OpenJDK 8

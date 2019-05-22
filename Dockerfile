@@ -41,7 +41,6 @@ ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
                        "build-tools;26.0.2" \
 		       "build-tools;25.0.3" \
-		       "build-tools:28.0.0" \
                        "platforms;android-25" \
                        "platforms;android-26" \
 		       "platforms;android-28" 
