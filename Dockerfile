@@ -28,7 +28,7 @@ ENV ANDROID_HOME ${SDK_HOME}/android-sdk-linux
 ENV ANDROID_SDK ${SDK_HOME}/android-sdk-linux
 ENV ANDROID_SDK_MANAGER ${SDK_HOME}/android-sdk-linux/tools/bin/sdkmanager
 
-ENV ANDROID_SDK_VERSION sdk-tools-linux-3859397.zip
+ENV ANDROID_SDK_VERSION sdk-tools-linux-4333796.zip
 ENV ANDROID_SDK_URL https://dl.google.com/android/repository/${ANDROID_SDK_VERSION}
 RUN curl -sSL "${ANDROID_SDK_URL}" -o ${ANDROID_SDK_VERSION} \
     && unzip ${ANDROID_SDK_VERSION} -d ${ANDROID_HOME} \
@@ -40,10 +40,11 @@ RUN (while sleep 3; do echo "y"; done) | sdkmanager --update && (while sleep 3; 
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
                        "build-tools;26.0.2" \
-		       "build-tools;25.0.3" \
+		                   "build-tools;25.0.3" \
+		                   "build-tools;28.0.3" \                       
                        "platforms;android-25" \
                        "platforms;android-26" \
-		       "platforms;android-28" 
+		                   "platforms;android-28" 
 
 ENV GOOGLE_COMPONENTS "extras;android;m2repository" \
                        "extras;google;m2repository" \
