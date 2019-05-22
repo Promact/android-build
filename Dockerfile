@@ -40,11 +40,11 @@ RUN (while sleep 3; do echo "y"; done) | sdkmanager --update && (while sleep 3; 
 ENV ANDROID_COMPONENTS "tools" \
                        "platform-tools" \
                        "build-tools;26.0.2" \
-		               "build-tools;25.0.3" \
-					   "build-tools:28.0.3" \
+		       "build-tools;25.0.3" \
+		       "build-tools:28.0.0" \
                        "platforms;android-25" \
                        "platforms;android-26" \
-					   "platforms;android-28" 
+		       "platforms;android-28" 
 
 ENV GOOGLE_COMPONENTS "extras;android;m2repository" \
                        "extras;google;m2repository" \
